@@ -1,0 +1,495 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout>
+  <main class="w-full h-fit">
+    <section class="w-full h-fit flex flex-col md:flex-col-reverse lg:flex-row">
+      <!-- left section - poster image -->
+      <div class="w-full lg:w-[35%] h-fit lg:h-[100vh] lg:sticky top-0 left-0">
+        <img
+          class="w-full h-full object-cover"
+          src="/images/posterimage.webp"
+          alt=""
+        />
+      </div>
+      <!-- right section - form -->
+      <div class="w-full lg:w-[65%] h-fit md:h-[85vh] lg:h-fit">
+        <div
+          class="w-full h-full flex flex-col items-center gap-[40px] lg:gap-[80px]"
+        >
+          <!-- logo -->
+          <div class="mt-[40px] w-[150px] h-[45px]">
+            <img class="size-full" src="/images/coslogo.png" alt="logo" />
+          </div>
+          <!-- form -->
+          <!-- step 1 -->
+          <div
+            id="formStep1"
+            class="w-full px-[24px] md:px-[40px] flex items-center justify-center"
+          >
+            <form
+              class="w-full p-[24px] md:p-[40px] flex flex-col gap-[24px] text-white border-[0.5px] border-white/50"
+            >
+              <div
+                class="w-full flex flex-col md:flex-row gap-[24px] md:gap-[40px]"
+              >
+                <!-- Full name -->
+                <div class="w-full flex flex-col gap-[4px]">
+                  <label class="text-[16px] text-[#D1D1D1]">Full name</label>
+                  <input
+                    type="text"
+                    placeholder="eg. Alex Appiah"
+                    class="w-full px-[12px] py-[8px] bg-[#202241] text-white placeholder:text-[#757575]"
+                  />
+                </div>
+
+                <!-- Email -->
+                <div class="w-full flex flex-col gap-[4px]">
+                  <label class="text-[16px] text-[#D1D1D1]">Email</label>
+                  <input
+                    type="email"
+                    placeholder="eg. alexappiah@gmail.com"
+                    class="w-full px-[12px] py-[8px] bg-[#202241] text-white placeholder:text-[#757575]"
+                  />
+                </div>
+              </div>
+
+              <div
+                class="w-full flex flex-col md:flex-row gap-[24px] md:gap-[40px]"
+              >
+                <!-- City -->
+                <div class="w-full flex flex-col gap-[4px]">
+                  <label class="text-[16px] text-[#D1D1D1]">City</label>
+                  <input
+                    type="text"
+                    placeholder="eg. Accra"
+                    class="w-full px-[12px] py-[8px] bg-[#202241] text-white placeholder:text-[#757575]"
+                  />
+                </div>
+
+                <!-- Street address -->
+                <div class="w-full flex flex-col gap-[4px]">
+                  <label class="text-[16px] text-[#D1D1D1]"
+                    >Street address</label
+                  >
+                  <input
+                    type="text"
+                    placeholder="eg. 123 Abotsi Link Accra"
+                    class="w-full px-[12px] py-[8px] bg-[#202241] text-white placeholder:text-[#757575]"
+                  />
+                </div>
+              </div>
+
+              <div
+                class="w-full flex flex-col md:flex-row gap-[24px] md:gap-[40px]"
+              >
+                <!-- Country -->
+                <div class="w-full flex flex-col gap-[4px]">
+                  <label class="text-[16px] text-[#D1D1D1]">Country</label>
+                  <select
+                    class="w-full px-[12px] py-[8px] bg-[#202241] text-white placeholder:text-[#757575]"
+                  >
+                    <option disabled selected>Please select</option>
+                    <option>Ghana</option>
+                    <option>Nigeria</option>
+                    <option>Kenya</option>
+                  </select>
+                </div>
+
+                <!-- Gender -->
+                <div class="w-full flex flex-col gap-[4px]">
+                  <label class="text-[16px] text-[#D1D1D1]">Gender</label>
+                  <select
+                    class="w-full px-[12px] py-[8px] bg-[#202241] text-white placeholder:text-[#757575]"
+                  >
+                    <option disabled selected>Please select</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Button spans full width below form -->
+              <div class="col-span-1 md:col-span-2 mt-4">
+                <button
+                  id="nextButton"
+                  type="button"
+                  class="w-full px-[24px] py-[12px] bg-transparent hover:bg-[#153DA2] border-[1px] border-[#757575] hover:border-white font-bold transition duration-300"
+                >
+                  Next
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Step 2 -->
+          <div
+            id="formStep2"
+            class="hidden w-full px-[24px] md:px-[40px] items-center justify-center"
+          >
+            <form
+              id="finalForm"
+              class="w-full p-[24px] md:p-[40px] flex flex-col gap-[24px] text-white border-[0.5px] border-white/50"
+            >
+              <!-- Row 1: Education + Program Interest -->
+              <div
+                class="w-full flex flex-col md:flex-row gap-[24px] md:gap-[40px]"
+              >
+                <div class="w-full flex flex-col gap-[4px]">
+                  <label class="text-[16px] text-[#D1D1D1]">
+                    What is your highest level of education completed?
+                  </label>
+                  <select
+                    class="w-full px-[12px] py-[8px] bg-[#202241] text-white placeholder:text-[#757575]"
+                  >
+                    <option disabled selected>Please select</option>
+                    <option>High School</option>
+                    <option>Bachelor's Degree</option>
+                    <option>Master's Degree</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+
+                <div class="w-full flex flex-col gap-[4px]">
+                  <label class="text-[16px] text-[#D1D1D1]">
+                    Which type of graduate program are you most interested in?
+                  </label>
+                  <select
+                    class="w-full px-[12px] py-[8px] bg-[#202241] text-white placeholder:text-[#757575]"
+                  >
+                    <option disabled selected>Please select</option>
+                    <option>MBA</option>
+                    <option>MS in Computer Science</option>
+                    <option>PhD</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Row 2: How did you hear + How many attending -->
+              <div
+                class="w-full flex flex-col md:flex-row gap-[24px] md:gap-[40px]"
+              >
+                <div class="w-full flex flex-col gap-[4px]">
+                  <label class="text-[16px] text-[#D1D1D1]">
+                    How Did You Hear About This Event?
+                  </label>
+                  <select
+                    class="w-full px-[12px] py-[8px] bg-[#202241] text-white placeholder:text-[#757575]"
+                  >
+                    <option disabled selected>Please select</option>
+                    <option>Social Media</option>
+                    <option>Friend</option>
+                    <option>Email</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+
+                <div class="w-full flex flex-col gap-[4px]">
+                  <label class="text-[16px] text-[#D1D1D1]">
+                    How many people are you attending with?
+                  </label>
+                  <select
+                    class="w-full px-[12px] py-[8px] bg-[#202241] text-white placeholder:text-[#757575]"
+                  >
+                    <option disabled selected>Please select</option>
+                    <option>Just Me</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3 or more</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Consultation Radio Buttons -->
+              <div class="flex flex-col gap-[8px]">
+                <label class="text-[16px] text-[#D1D1D1]">
+                  Would you like a 1-on-1 consultation with a Come Study
+                  representative after the event?
+                </label>
+                <div class="flex gap-[40px]">
+                  <label class="flex items-center gap-2">
+                    <input
+                      type="radio"
+                      name="consultation"
+                      value="yes"
+                      class="accent-white"
+                    />
+                    <span>Yes I would like that</span>
+                  </label>
+                  <label class="flex items-center gap-2">
+                    <input
+                      type="radio"
+                      name="consultation"
+                      value="no"
+                      class="accent-white"
+                    />
+                    <span>No thanks I am good</span>
+                  </label>
+                </div>
+              </div>
+              <div class="flex gap-[32px]">
+                <!-- Back button -->
+                <button
+                  id="backButton"
+                  type="button"
+                  class="w-full px-[24px] py-[12px] bg-transparent hover:bg-[#153DA2] border-[1px] border-[#757575] hover:border-white font-bold transition duration-300"
+                >
+                  Back
+                </button>
+                <!-- Submit Button -->
+                <button
+                  type="submit"
+                  class="w-full px-[24px] py-[12px] bg-transparent hover:bg-[#153DA2] border-[1px] border-[#757575] hover:border-white font-bold transition duration-300"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- footer -->
+          <footer class="w-full p-[24px] md:p-[40px]">
+            <div
+              class="w-full gap-[40px] flex flex-col md:flex-row items-center md:items-start justify-center"
+            >
+              <div
+                class="flex flex-col items-center md:items-start gap-[24px] w-full"
+              >
+                <!-- logo -->
+                <div class="w-[106px] h-[32px]">
+                  <img class="size-full" src="/images/coslogo.png" alt="logo" />
+                </div>
+
+                <div class="flex flex-row gap-[16px]">
+                  <!-- instagram -->
+                  <div class="size-[24px]">
+                    <img
+                      class="size-full object-cover"
+                      src="/svgs/instagram.svg"
+                      alt="instagram icon"
+                    />
+                  </div>
+                  <!-- x -->
+                  <div class="size-[24px]">
+                    <img
+                      class="size-full object-cover"
+                      src="/svgs/x.svg"
+                      alt="x icon"
+                    />
+                  </div>
+                  <!-- linkedin -->
+                  <div class="size-[24px]">
+                    <img
+                      class="size-full"
+                      src="/svgs/linkedIn.svg"
+                      alt="linkedin icon"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="flex flex-col items-center md:items-start text-center md:text-left gap-[10px] w-full text-wrap"
+              >
+                <h2 class="text-white text-[20px] font-semibold">Contact Us</h2>
+                <p class="text-[#BCBCBC] text-[16px]">
+                  comestudyinternational
+                  <br />@gmail.com
+                </p>
+                <p class="text-[#BCBCBC] text-[16px]">
+                  No. 18 Nii Adjei Onano street <br /> East legon, Accra - Ghana
+                </p>
+              </div>
+              <div
+                class="flex flex-col items-center md:items-start text-center md:text-left gap-[10px] w-f text-nowrap"
+              >
+                <div>
+                  <p class="text-white text-[16px]">Privacy Policy</p>
+                  <p class="text-white text-[16px]">Terms of Service</p>
+                </div>
+                <p class="text-[#BCBCBC] text-[16px]">Powered by UtopiaTech</p>
+              </div>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const step1 = document.getElementById("formStep1");
+      const step2 = document.getElementById("formStep2");
+
+      const nextButton = document.getElementById("nextButton");
+      if (nextButton) {
+        nextButton.addEventListener("click", () => {
+          if (!step1) return;
+          const inputs = step1.querySelectorAll("input, select");
+          let valid = true;
+
+          inputs.forEach((input) => {
+            const inputValue =
+              input instanceof HTMLInputElement ||
+              input instanceof HTMLSelectElement
+                ? input.value
+                : "";
+            if (!inputValue || inputValue === "Please select") {
+              valid = false;
+              input.classList.add("border", "border-red-500");
+            } else {
+              input.classList.remove("border", "border-red-500");
+            }
+          });
+
+          if (!valid) {
+            alert("Please fill in all fields before continuing.");
+            return;
+          }
+
+          // If valid, proceed to step 2
+          step1.classList.add("hidden");
+          step1.classList.remove("flex");
+          if (step2) step2.classList.remove("hidden");
+          if (step2) step2.classList.add("flex");
+        });
+      }
+
+      const backButton = document.getElementById("backButton");
+      if (backButton) {
+        backButton.addEventListener("click", () => {
+          if (step2) step2.classList.add("hidden");
+          if (step2) step2.classList.remove("flex");
+          if (step1) step1.classList.remove("hidden");
+          if (step1) step1.classList.add("flex");
+        });
+      }
+    });
+
+    const finalForm = document.getElementById("finalForm");
+    if (finalForm) {
+      const step2 = document.getElementById("formStep2");
+      finalForm.addEventListener("submit", async (e) => {
+        e.preventDefault(); // Stop default form submission
+
+        if (!step2) {
+          alert("Form step 2 is missing.");
+          return;
+        }
+
+        const step2Inputs = step2.querySelectorAll(
+          "select, input[type='radio']"
+        );
+        let valid = true;
+
+        // Validate selects
+        step2.querySelectorAll("select").forEach((select) => {
+          if (!select.value || select.value === "Please select") {
+            valid = false;
+            select.classList.add("border", "border-red-500");
+          } else {
+            select.classList.remove("border", "border-red-500");
+          }
+        });
+
+        // Validate radio buttons
+        const selectedRadio = step2.querySelector(
+          'input[name="consultation"]:checked'
+        );
+        if (!selectedRadio) {
+          valid = false;
+          alert("Please select a consultation preference.");
+        }
+
+        if (!valid) {
+          alert("Please fill in all required fields before submitting.");
+          return;
+        }
+
+        // Step 1 values
+        const fullName = (
+          document.querySelector(
+            'input[placeholder="eg. Alex Appiah"]'
+          ) as HTMLInputElement | null
+        )?.value;
+        const email = (
+          document.querySelector(
+            'input[placeholder="eg. alexappiah@gmail.com"]'
+          ) as HTMLInputElement | null
+        )?.value;
+        const city = (
+          document.querySelector(
+            'input[placeholder="eg. Accra"]'
+          ) as HTMLInputElement | null
+        )?.value;
+        const address = (
+          document.querySelector(
+            'input[placeholder="eg. 123 Abotsi Link Accra"]'
+          ) as HTMLInputElement | null
+        )?.value;
+        const country = document.querySelectorAll("select")[0]?.value;
+        const gender = document.querySelectorAll("select")[1]?.value;
+
+        // Step 2 values
+        const education = document.querySelectorAll("select")[2]?.value;
+        const programInterest = document.querySelectorAll("select")[3]?.value;
+        const referral = document.querySelectorAll("select")[4]?.value;
+        const attendees = document.querySelectorAll("select")[5]?.value;
+        const consultation = (
+          document.querySelector(
+            'input[name="consultation"]:checked'
+          ) as HTMLInputElement | null
+        )?.value;
+
+        // Construct payload
+        const payload = {
+          name: fullName,
+          email: email,
+          city: city,
+          address: address,
+          country: country,
+          gender: gender,
+          levelOfEducation: education,
+          graduateProgram: programInterest,
+          aboutEvent: referral,
+          peopleAttending: attendees,
+          consultation: consultation,
+        };
+
+        try {
+          const response = await fetch(
+            "https://come-study-international-production.up.railway.app/submit",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(payload),
+            }
+          );
+
+          if (!response.ok) throw new Error("Network response was not ok");
+
+          const result = await response.json();
+          alert("Form submitted successfully!");
+          console.log(result); // or show a success screen
+        } catch (err) {
+          console.error("Form submission failed", err);
+          alert("Something went wrong. Please try again later.");
+        }
+      });
+    }
+  </script>
+</BaseLayout>
+
+<style>
+  main {
+    background: radial-gradient(
+      9.66% 17.21% at 33.55% 15.76%,
+      #1c1677 0%,
+      #070934 100%
+    );
+  }
+</style>
