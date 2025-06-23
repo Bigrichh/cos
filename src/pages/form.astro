@@ -4,6 +4,39 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 <BaseLayout>
   <main class="w-full h-fit">
+    <section id="loader"
+      class="hidden loading fixed top-0 z-50 h-[100vh] w-[100vw] bg-black/50 justify-center items-center"
+    >
+      <span
+        class="absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%] block w-[60px] h-[60px] my-0 mx-auto border-solid border-[3px] border-transparent border-t-white border-b-white rounded-[50%]"
+      ></span>
+    </section>
+    <section
+      id="modal"
+      class="hidden fixed top-0 left-0 w-[100vw] h-[100vh] flex-col items-center bg-[#013C4B] z-50"
+    >
+      <div
+        class="absolute top-[50%] left-[50%] transform -translate-x-[50%] -translate-y-[50%] flex flex-col items-center"
+      >
+        <div class="size-[140px]">
+          <img src="/svgs/success.svg" alt="Success Svg" />
+        </div>
+        <div class="flex flex-col items-center gap-[12px]">
+          <h2 class="text-[24px] md:text-[40px] text-[#EBE1CC] font-extrabold">
+            Success
+          </h2>
+          <p class="text-[16px] font-semibold text-[#AEADAD] text-center">
+            Your slot has been successfully booked.
+          </p>
+        </div>
+        <a
+          class="mt-[24px] w-fit px-[24px] py-[12px] bg-transparent hover:bg-[#153DA2] border-[1px] border-[#757575] text-white text-center hover:border-white font-bold transition duration-300"
+          href="/"
+        >
+          <p>Back to home</p>
+        </a>
+      </div>
+    </section>
     <section class="w-full h-fit flex flex-col md:flex-col-reverse lg:flex-row">
       <!-- left section - poster image -->
       <div class="w-full lg:w-[35%] h-fit lg:h-[100vh] lg:sticky top-0 left-0">
@@ -215,7 +248,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                       type="radio"
                       name="consultation"
                       value="yes"
-                      class="accent-white"
+                      class="accent-black size-[18px]"
                     />
                     <span>Yes I would like that</span>
                   </label>
@@ -224,7 +257,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                       type="radio"
                       name="consultation"
                       value="no"
-                      class="accent-white"
+                      class="accent-black size-[18px]"
                     />
                     <span>No thanks I am good</span>
                   </label>
@@ -319,6 +352,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   </main>
 
   <script>
+    const loader = document.querySelector(".loading");
     document.addEventListener("DOMContentLoaded", function () {
       const step1 = document.getElementById("formStep1");
       const step2 = document.getElementById("formStep2");
@@ -373,9 +407,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       const step2 = document.getElementById("formStep2");
       finalForm.addEventListener("submit", async (e) => {
         e.preventDefault(); // Stop default form submission
+        if (loader) loader.classList.remove("hidden");
 
         if (!step2) {
           alert("Form step 2 is missing.");
+          if (loader) loader.classList.add("hidden");
           return;
         }
 
@@ -400,10 +436,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         );
         if (!selectedRadio) {
           valid = false;
+          if (loader) loader.classList.add("hidden");
           alert("Please select a consultation preference.");
         }
 
         if (!valid) {
+          if (loader) loader.classList.add("hidden");
           alert("Please fill in all required fields before submitting.");
           return;
         }
@@ -473,7 +511,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           if (!response.ok) throw new Error("Network response was not ok");
 
           const result = await response.json();
-          alert("Form submitted successfully!");
+          const modal = document.getElementById("modal");
+          if (loader) loader.classList.add("hidden");
+          // Show modal
+          if (modal) {
+            modal.classList.remove("hidden");
+            modal.classList.add("flex");
+          }
           console.log(result); // or show a success screen
         } catch (err) {
           console.error("Form submission failed", err);
@@ -491,5 +535,22 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       #1c1677 0%,
       #070934 100%
     );
+  }
+  #modal {
+    background: radial-gradient(
+      9.66% 17.21% at 33.55% 15.76%,
+      #1c1677 0%,
+      #070934 100%
+    );
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+ #loader span {
+    animation: spin ease 1000ms infinite;
   }
 </style>
